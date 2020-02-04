@@ -1,7 +1,6 @@
 from django.contrib.auth import authenticate
 from rest_framework import status
 from rest_framework.authtoken.models import Token
-from django.contrib.auth.models import User
 from rest_framework.decorators import permission_classes
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, RetrieveDestroyAPIView
 from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated
@@ -9,9 +8,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
-# @permission_classes((IsAdminUser, IsAuthenticated))
+# @permission_classes((IsAdminUserProfile, IsAuthenticated))
 from users.models import UserProfile
-from users.serializers import UserProfileSerializer, userFullSerializer
+from users.serializers import UserProfileSerializer, UserFullSerializer
 
 
 class UserCreate(APIView):
@@ -23,14 +22,14 @@ class UserCreate(APIView):
         last_name = data['last_name']
         type = data['type']
 
-        user_check = User.objects.filter(username=username)
+        user_check = UserProfile.objects.filter(username=username)
         if not user_check:
-            new_user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name)
+            new_user = UserProfile.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name)
             token, _ = Token.objects.get_or_create(user=new_user)
-            new_user.userprofile.type = type
-            new_user.userprofile.save()
+            new_user.UserProfile.type = type
+            new_user.UserProfile.save()
             new_user.save()
-            return Response("User is created")
+            return Response("user is created")
         else:
             return Response("We have already the same username")
 
@@ -68,17 +67,17 @@ class UserListAPIView(ListAPIView):
     lookup_field = 'id'
     serializer_class = UserProfileSerializer
     queryset = UserProfile.objects.all()
-    # permission_classes = (IsAdminUser, IsAuthenticated)
+    # permission_classes = (IsAdminUserProfile, IsAuthenticated)
 
 
 class UserUpdateAPIView(RetrieveUpdateAPIView):
     lookup_field = 'id'
-    serializer_class = userFullSerializer
-    queryset = User.objects.all()
-    # permission_classes = (IsAuthenticated, IsAdminUser)
+    serializer_class = UserFullSerializer
+    queryset = UserProfile.objects.all()
+    # permission_classes = (IsAuthenticated, IsAdminUserProfile)
 
     def update(self, request, *args, **kwargs):
-        obj = User.objects.get(id=kwargs['id'])
+        obj = UserProfile.objects.get(id=kwargs['id'])
         obj.username = self.request.data['username']
         obj.first_name = self.request.data['first_name']
         obj.last_name = self.request.data['last_name']
@@ -90,7 +89,7 @@ class UserUpdateAPIView(RetrieveUpdateAPIView):
 
 class UserDeleteAPIView(RetrieveDestroyAPIView):
     lookup_field = 'id'
-    serializer_class = userFullSerializer
-    queryset = User.objects.all()
-    # permission_classes = (IsAdminUser, IsAuthenticated)
+    serializer_class = UserFullSerializer
+    queryset = UserProfile.objects.all()
+    # permission_classes = (IsAdminUserProfile, IsAuthenticated)
 
