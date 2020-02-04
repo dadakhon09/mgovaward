@@ -8,11 +8,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
-# @permission_classes((IsAdminUserProfile, IsAuthenticated))
 from users.models import UserProfile
 from users.serializers import UserProfileSerializer, UserFullSerializer
 
 
+# @permission_classes((IsAdminUserProfile, IsAuthenticated))
 class UserCreate(APIView):
     def post(self, request):
         data = request.data
@@ -20,14 +20,13 @@ class UserCreate(APIView):
         password = data['password']
         first_name = data['first_name']
         last_name = data['last_name']
-        type = data['type']
+        user_type = data['user_type']
 
         user_check = UserProfile.objects.filter(username=username)
         if not user_check:
             new_user = UserProfile.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name)
             token, _ = Token.objects.get_or_create(user=new_user)
-            new_user.UserProfile.type = type
-            new_user.UserProfile.save()
+            new_user.user_type = user_type
             new_user.save()
             return Response("user is created")
         else:

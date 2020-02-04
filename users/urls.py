@@ -10,7 +10,7 @@ from users.views import UserLogin, UserLogout, UserCreate, UserListAPIView
 urlpatterns = [
     path('login/', UserLogin.as_view(), name='login'),
     path('logout/', UserLogout.as_view(), name='logout'),
-    path('create-user/', UserCreate.as_view(), name='create-user'),
+    path('create/', UserCreate.as_view(), name='create-user'),
     path('users/list/all/', UserListAPIView.as_view(), name='users-list'),
 ]
 
