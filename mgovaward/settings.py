@@ -93,7 +93,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mgovaward',
-        'USER': 'izzat',
+        'USER': 'dadakhon',
         'PASSWORD': '1',
     }
 }
