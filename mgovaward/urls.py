@@ -26,7 +26,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path('api/v1/users/', include('users.urls')),
     path('api/v1/user_analysis/', include('app.analysis.urls')),
-    path('api/v1/user_analysis/', include('app.pharmacy.urls')),
+    path('api/v1/pharmacy/', include('app.pharmacy.urls')),
 )
 
 if settings.DEBUG:
