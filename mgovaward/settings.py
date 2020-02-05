@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 
     'app',
     'users',
-    'app.analisys'
+    'app.analysis'
 ]
 
 MIDDLEWARE = [
