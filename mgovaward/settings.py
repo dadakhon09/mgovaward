@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'app',
     'users',
+    'app.analisys'
 ]
 
 MIDDLEWARE = [
@@ -92,7 +93,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mgovaward',
-        'USER': 'dadakhon',
+        'USER': 'izzat',
         'PASSWORD': '1',
     }
 }

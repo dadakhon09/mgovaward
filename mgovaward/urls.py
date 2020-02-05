@@ -19,13 +19,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
 urlpatterns += i18n_patterns(
     path('api/v1/users/', include('users.urls')),
+    path('api/v1/user_analis/', include('app.analisys.urls'))
 )
 
 if settings.DEBUG:
