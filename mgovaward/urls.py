@@ -26,6 +26,22 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     path('api/v1/users/', include('users.urls')),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 )
 
 if settings.DEBUG:
