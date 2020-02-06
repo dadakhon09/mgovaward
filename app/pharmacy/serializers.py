@@ -1,12 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 
-from app.models import Medicine, Pharmacy, MedicinePharmacyRel
-
-
-class MedicineSerializer(ModelSerializer):
-    class Meta:
-        model = Medicine
-        fields = ('title', )
+from app.medicine.serializers import MedicineSerializer
+from app.models import Pharmacy, MedicinePharmacyRel
 
 
 class PharmacySerializer(ModelSerializer):

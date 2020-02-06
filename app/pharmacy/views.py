@@ -1,12 +1,17 @@
-from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView
 
-from app.models import Pharmacy, Medicine, MedicinePharmacyRel
-from app.pharmacy.serializers import PharmacySerializer, MedicineSerializer, MedicinePharmacyRelSerializer
+from app.models import Pharmacy, MedicinePharmacyRel
+from app.pharmacy.serializers import PharmacySerializer, MedicinePharmacyRelSerializer
 
 
 class PharmacyList(ListAPIView):
     model = Pharmacy
     queryset = Pharmacy.objects.all()
+    serializer_class = PharmacySerializer
+
+
+class PharmacyCreate(CreateAPIView):
+    model = Pharmacy
     serializer_class = PharmacySerializer
 
 
@@ -17,22 +22,14 @@ class PharmacyDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = PharmacySerializer
 
 
-class MedicineList(ListAPIView):
-    model = Medicine
-    queryset = Medicine.objects.all()
-    serializer_class = MedicineSerializer
-
-
-class MedicineDetail(RetrieveUpdateDestroyAPIView):
-    lookup_field = 'id'
-    model = Medicine
-    queryset = Medicine.objects.all()
-    serializer_class = MedicineSerializer
-
-
 class MedicinePharmacyRelList(ListAPIView):
     model = MedicinePharmacyRel
     queryset = MedicinePharmacyRel.objects.all()
+    serializer_class = MedicinePharmacyRelSerializer
+
+
+class MedicinePharmacyRelCreate(CreateAPIView):
+    model = MedicinePharmacyRel
     serializer_class = MedicinePharmacyRelSerializer
 
 
