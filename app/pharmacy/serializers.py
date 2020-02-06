@@ -7,7 +7,7 @@ from app.models import Pharmacy, MedicinePharmacyRel
 class PharmacySerializer(ModelSerializer):
     class Meta:
         model = Pharmacy
-        fields = ('title', )
+        fields = ('id', 'title')
 
 
 class MedicinePharmacyRelSerializer(ModelSerializer):
@@ -16,4 +16,4 @@ class MedicinePharmacyRelSerializer(ModelSerializer):
 
     class Meta:
         model = MedicinePharmacyRel
-        fields = ('medicine', 'pharmacy')
+        fields = ('id', 'medicine', 'pharmacy')

@@ -6,5 +6,5 @@ from app.models import Medicine
 class MedicineSerializer(ModelSerializer):
     class Meta:
         model = Medicine
-        fields = ('title', )
+        fields = ('id', 'title')
 

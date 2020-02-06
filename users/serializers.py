@@ -10,11 +10,10 @@ class UserSerializer(ModelSerializer):
 
 
 class UserProfileSerializer(ModelSerializer):
-    user = UserSerializer()
 
     class Meta:
         model = UserProfile
-        fields = ('user', 'user_type')
+        fields = ('id', 'username', 'user_type')
 
 
 class userFullSerializer(ModelSerializer):
