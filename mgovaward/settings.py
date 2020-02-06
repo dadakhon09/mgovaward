@@ -24,7 +24,7 @@ SECRET_KEY = 'w$uvsohvq)_i9hl#qv86v0@4#d8dl4s#-p67swc4*ce+-lh0!h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 AUTH_USER_MODEL = 'users.UserProfile'
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_yasg',
 
     'app',
     'users',
