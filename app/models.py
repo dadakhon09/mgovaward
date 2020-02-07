@@ -1,5 +1,7 @@
 from django.contrib.postgres.fields import JSONField
 from django.db import models
+from django.utils import timezone
+from django.utils.timezone import now
 
 from users.models import UserProfile
 
@@ -19,13 +21,14 @@ class Analysis(models.Model):
         db_table = 'analysis'
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class UserAnalysis(models.Model):
     patient = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='patient')
     doctor = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='doctor')
     analysis = models.ForeignKey(Analysis, on_delete=models.CASCADE)
+    time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'user_analysis'
@@ -64,4 +67,4 @@ class MedicinePharmacyRel(models.Model):
         db_table = 'medicine_pharmacy_relations'
 
     def __str__(self):
-        return f'{self.medicine}-medicine + {self.pharmacy}-pharmacy'
+        return f'{str(self.medicine)}-medicine + {str(self.pharmacy)}-pharmacy' or 'asd'
