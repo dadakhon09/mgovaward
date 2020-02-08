@@ -26,7 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 AUTH_USER_MODEL = 'users.UserProfile'
 
 # Application definition
@@ -42,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'drf_yasg',
+    'corsheaders',
 
     'app',
     'users',
@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -78,8 +79,35 @@ TEMPLATES = [
     },
 ]
 
+
+CORS_ALLOW_METHODS = [
+    '*'
+]
+
+CORS_ALLOW_HEADERS = [
+    '*'
+]
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+
 WSGI_APPLICATION = 'mgovaward.wsgi.application'
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 5,
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+}
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -136,7 +164,6 @@ LANGUAGES = [
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
-
 
 TIME_ZONE = 'Asia/Tashkent'
 
