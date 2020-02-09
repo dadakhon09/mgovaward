@@ -25,7 +25,7 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     path('api/v1/users/', include('users.urls')),
-    path('api/v1/user_analysis/', include('app.analysis.urls')),
+    path('api/v1/analysis/', include('app.analysis.urls')),
     path('api/v1/pharmacy/', include('app.pharmacy.urls')),
     path('api/v1/medicine/', include('app.medicine.urls')),
 )

@@ -19,3 +19,6 @@ class UserAnalysisSerializer(ModelSerializer):
     class Meta:
         model = UserAnalysis
         fields = ('doctor', 'patient', 'analysis')
+
+
+

@@ -19,7 +19,7 @@ class Analysis(models.Model):
         db_table = 'analysis'
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class UserAnalysis(models.Model):
