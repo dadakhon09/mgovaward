@@ -7,14 +7,18 @@ from users.models import UserProfile
 
 class UserAnalysisList(ListAPIView):
     model = UserAnalysis
-    queryset = UserAnalysis.objects.all()
     serializer_class = UserAnalysisSerializer
+
+    def get_queryset(self):
+        qs = UserAnalysis.objects.all()
+        if self.request.GET.get('patient'):
+            qs = qs.filter(patient=self.request.GET.get('patient'))
+        return qs
 
 
 class UserAnalysisDetail(RetrieveUpdateDestroyAPIView):
     lookup_field = 'id'
     model = UserAnalysis
-    queryset = UserAnalysis.objects.all()
     serializer_class = UserAnalysisSerializer
 
 
