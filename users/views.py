@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 
 
 from users.models import UserProfile
-from users.serializers import UserProfileSerializer, UserFullSerializer
+from users.serializers import UserProfileSerializer, UserFullSerializer, UserSerializer
 
 
 # @permission_classes((IsAdminUserProfile, IsAuthenticated))
@@ -93,3 +93,12 @@ class UserDeleteAPIView(RetrieveDestroyAPIView):
     queryset = UserProfile.objects.all()
     # permission_classes = (IsAdminUserProfile, IsAuthenticated)
 
+
+class DoctorsListAPIView(ListAPIView):
+    serializer_class = UserSerializer
+    queryset = UserProfile.objects.filter(user_type=2)
+
+
+class PatientsListAPIView(ListAPIView):
+    serializer_class = UserSerializer
+    queryset = UserProfile.objects.filter(user_type=1)
