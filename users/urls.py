@@ -5,12 +5,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 
-from users.views import UserLogin, UserLogout, UserCreate, UserListAPIView
+from users.views import UserLogin, UserLogout, UserCreate, UserListAPIView, DoctorsListAPIView, PatientsListAPIView
 
 urlpatterns = [
     path('login/', UserLogin.as_view(), name='login'),
     path('logout/', UserLogout.as_view(), name='logout'),
     path('create/', UserCreate.as_view(), name='create-user'),
     path('list/', UserListAPIView.as_view(), name='users-list'),
+    path('doctor/list/', DoctorsListAPIView.as_view(), name='doctors-list'),
+    path('patient/list/', PatientsListAPIView.as_view(), name='patients-list'),
 ]
 

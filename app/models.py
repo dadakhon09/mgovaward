@@ -37,6 +37,29 @@ class UserAnalysis(models.Model):
         return f'{self.patient.username} + {self.doctor.username}'
 
 
+class Hospital(models.Model):
+    title = JSONField()
+    address = JSONField()
+    phone = models.CharField(max_length=15, null=True, blank=True)
+
+    class Meta:
+        db_table = 'hospitals'
+
+    def __str__(self):
+        return self.title['title_en']
+
+
+class DoctorHospital(models.Model):
+    doctor = models.ForeignKey(UserProfile, related_name='hospitals', on_delete=models.CASCADE)
+    hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'doctor-hospitals'
+
+    def __str__(self):
+        return f'{self.doctor.id}+{self.hospital.id}'
+
+
 class Medicine(models.Model):
     title = JSONField()
 

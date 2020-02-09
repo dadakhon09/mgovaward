@@ -45,7 +45,6 @@ INSTALLED_APPS = [
 
     'app',
     'users',
-    'app.analysis'
 ]
 
 MIDDLEWARE = [
@@ -103,9 +102,9 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 5,
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ],
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 # Database
@@ -122,7 +121,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mgovaward',
-        'USER': 'izzat',
+        'USER': 'dadakhon',
         'PASSWORD': '1',
     }
 }
