@@ -28,7 +28,7 @@ class UserAnalysis(models.Model):
     patient = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='patient')
     doctor = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='doctor')
     analysis = models.ForeignKey(Analysis, on_delete=models.CASCADE)
-    time = models.DateTimeField(auto_now_add=True)
+    time = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
         db_table = 'user_analysis'
