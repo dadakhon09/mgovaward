@@ -41,15 +41,18 @@ class UserLogin(APIView):
         password = data['password']
 
         if username is None or password is None:
-            return Response({'error': 'Please provide both username and password!'})
+            return Response({'error': 'Please provide both username and password!',
+                             'status': 'error'})
         user = authenticate(username=username, password=password)
         if not user:
-            return Response({'error': 'Invalid credentials!'})
+            return Response({'error': 'Invalid credentials!',
+                             'status': 'error'})
         token, _ = Token.objects.get_or_create(user=user)
         profile = UserProfile.objects.get(username=user.username, password=user.password)
         return Response({'token': token.key,
                          'user_id': profile.id,
                          'username': profile.username,
+                         'status': 'success',
                          'user_type': profile.get_user_type_display()})
 
 
