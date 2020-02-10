@@ -106,3 +106,17 @@ class DoctorsListAPIView(ListAPIView):
 class PatientsListAPIView(ListAPIView):
     serializer_class = UserSerializer
     queryset = UserProfile.objects.filter(user_type=1)
+
+
+class DoctorDetailAPIView(ListAPIView):
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        return UserProfile.objects.filter(id=self.kwargs['doctor_id'])
+
+
+class PatientDetailAPIView(ListAPIView):
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        return UserProfile.objects.filter(id=self.kwargs['patient_id'])
