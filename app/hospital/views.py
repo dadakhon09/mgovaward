@@ -38,3 +38,12 @@ class DoctorHospitalDetail(RetrieveUpdateDestroyAPIView):
     model = DoctorHospital
     queryset = DoctorHospital.objects.all()
     serializer_class = DoctorHospitalSerializer
+
+
+class HospitalsDoctorsList(ListAPIView):
+    model = DoctorHospital
+    serializer_class = DoctorHospitalSerializer
+
+    def get_queryset(self):
+        q = DoctorHospital.objects.filter(hospital_id=self.kwargs['hospital_id'])
+        return q
