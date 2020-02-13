@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, Serializer
 
 from app.models import Hospital, DoctorHospital
 from users.serializers import userFullSerializer
@@ -11,8 +11,8 @@ class HospitalSerializer(ModelSerializer):
 
 
 class DoctorHospitalSerializer(ModelSerializer):
-    doctor = userFullSerializer(many=True)
-    hospital = HospitalSerializer(many=True)
+    doctor = userFullSerializer()
+    hospital = HospitalSerializer()
 
     class Meta:
         model = DoctorHospital
