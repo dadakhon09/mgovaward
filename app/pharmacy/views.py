@@ -12,7 +12,6 @@ class PharmacyList(ListAPIView):
         qs = MedicinePharmacyRel.objects.all()
         if self.request.GET.get('m'):
             qs = qs.filter(medicine__title__title_en__icontains=self.request.GET.get('m'))
-            print(qs)
         return qs
 
 

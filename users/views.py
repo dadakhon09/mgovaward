@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 
 
 from users.models import UserProfile
-from users.serializers import UserProfileSerializer, UserFullSerializer, UserSerializer
+from users.serializers import UserProfileSerializer, UserFullSerializer, UserSerializer, userFullSerializer
 
 
 # @permission_classes((IsAdminUserProfile, IsAuthenticated))
@@ -99,24 +99,24 @@ class UserDeleteAPIView(RetrieveDestroyAPIView):
 
 
 class DoctorsListAPIView(ListAPIView):
-    serializer_class = UserSerializer
+    serializer_class = userFullSerializer
     queryset = UserProfile.objects.filter(user_type=2)
 
 
 class PatientsListAPIView(ListAPIView):
-    serializer_class = UserSerializer
+    serializer_class = userFullSerializer
     queryset = UserProfile.objects.filter(user_type=1)
 
 
 class DoctorDetailAPIView(ListAPIView):
-    serializer_class = UserSerializer
+    serializer_class = userFullSerializer
 
     def get_queryset(self):
         return UserProfile.objects.filter(id=self.kwargs['doctor_id'])
 
 
 class PatientDetailAPIView(ListAPIView):
-    serializer_class = UserSerializer
+    serializer_class = userFullSerializer
 
     def get_queryset(self):
         return UserProfile.objects.filter(id=self.kwargs['patient_id'])
