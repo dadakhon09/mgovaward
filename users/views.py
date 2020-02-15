@@ -22,6 +22,10 @@ class UserCreate(APIView):
         last_name = data['last_name']
         user_type = data['user_type']
 
+        if username == '' or password == '':
+            return Response({'error': 'Please provide at least username and password!',
+                             'status': 'error'})
+
         user_check = UserProfile.objects.filter(username=username)
         if not user_check:
             new_user = UserProfile.objects.create(username=username, first_name=first_name, last_name=last_name)
