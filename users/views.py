@@ -41,6 +41,10 @@ class UserLogin(APIView):
         username = data['username']
         password = data['password']
 
+        if username == '' or password == '':
+            return Response({'error': 'Please provide both username and password!',
+                             'status': 'error'})
+
         if username is None or password is None:
             return Response({'error': 'Please provide both username and password!',
                              'status': 'error'})
